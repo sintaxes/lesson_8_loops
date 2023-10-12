@@ -34,6 +34,47 @@ while True:
 
 
 
+print("You will need to enter five user names and passwords")
+
+
+input_string = input ("username='qwerty', password='as0dfg'; username='zxcvbn', password='bnm'")
+input_string=input_string.replace(" ","").lower()
+input_list = input_string.split(";")
+
+credentials = {}
+symbols_in_passwords = "!@#$%^&*()_+,.<>/?0123456789"
+
+for user_list in input_list:
+    elems_list=user_list.split(",")
+    username=elems_list[0].replace('username=','').replace("'",'')
+    password=elems_list[1].replace("password=",'').replace("'",'')
+    char_flag = False
+    for char in symbols_in_passwords:
+        if char in password:
+            char_flag = True
+    if char_flag == True:
+        credentials[username]=password        
+    else:        
+        print("You password is too weak")
+    
+
+
+
+while True:
+    login_username = input("Enter your user name: ").lower()
+    login_password = input("Enter your password: ").lower()
+
+    if login_username in credentials and credentials[login_username] == login_password:
+    # if login_username in credentials.keys() and credentials[login_username] == login_password:
+        print("Your credentials are correct")
+        break
+    else:
+        print(" Your credentials are not correct, try again. ")
+    
+
+
+
+
 
 
 
